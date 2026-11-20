@@ -1,0 +1,60 @@
+﻿@model DoctorListVm
+@{
+    ViewData["Title"] = Model.Specialty.DisplayName(T.IsBangla);
+    string Initials(string name)
+    {
+        var parts = name.Replace("Dr. ", "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return string.Concat(parts.Take(2).Select(p => p[0]));
+    }
+    var chips = new[] { ("top", "TopRated"), ("fast", "FastReply"), ("exp", "Experienced"), ("fee", "Fee") };
+}
+
+<h1>@Model.Specialty.Icon @Model.Specialty.DisplayName(T.IsBangla)</h1>
+
+<div class="chips">
+    @foreach (var (key, label) in chips)
+    {
+        <a class="chip @(Model.Sort == key ? "active" : "")"
+           asp-controller="Doctors" asp-action="Specialty"
+           asp-route-slug="@Model.Specialty.Slug" asp-route-sort="@key">@T[label]</a>
+    }
+</div>
+
+@if (!Model.Doctors.Any())
+{
+    <p class="muted">@T["NoDoctors"]</p>
+}
+
+@foreach (var d in Model.Doctors)
+{
+    <div class="doc-card">
+        <div class="avatar">@Initials(d.User.FullName)</div>
+
+        <div class="doc-info">
+            <strong>@d.User.FullName</strong>
+            <span class="muted">@T.Format("YearsExp", d.YearsExperience) · ৳ @d.Fee.ToString("0")</span>
+            <div class="badges">
+                @if (d.Id == Model.TopPickId)
+                {
+                    <span class="badge gold">@T["TopPick"]</span>
+                }
+                @if (d.AvgReplyMinutes <= 15)
+                {
+                    <span class="badge green">@T["FastReplier"]</span>
+                }
+                @if (d.YearsExperience >= 10 && d.IsVerified)
+                {
+                    <span class="badge purple">@T["Experienced"]</span>
+                }
+            </div>
+        </div>
+
+        <div class="doc-meta">
+            <strong>@d.AvgRating.ToString("0.0", CultureInfo.InvariantCulture) ★</strong>
+            <span class="muted">(@d.ReviewCount @T["Reviews"])</span>
+            <span class="pill">@T.Format("RepliesIn", d.AvgReplyMinutes)</span>
+        </div>
+
+        <a class="btn" href="#">@T["BookChat"]</a>
+    </div>
+}

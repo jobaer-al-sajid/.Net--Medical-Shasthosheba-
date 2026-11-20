@@ -1,0 +1,28 @@
+﻿@model PatientDashboardVm
+@{
+    ViewData["Title"] = T["Home"];
+}
+
+<h1>@T["Hello"], @Model.FullName</h1>
+
+<div class="grid grid-3">
+    <div class="stat"><small>@T["NextVisit"]</small><strong>@Model.NextVisitText</strong></div>
+    <div class="stat"><small>@T["Medicines"]</small><strong>-</strong></div>
+    <div class="stat"><small>@T["CareAtHome"]</small><strong>@(Model.ShowHomeNurse? T["NurseVisit"] : "-")</strong></div>
+</div>
+
+<h3>@T["TopDoctors"]</h3>
+<div class="grid grid-3">
+    @foreach (var d in Model.TopDoctors)
+    {
+        <a class="doc-mini" asp-controller="Doctors" asp-action="Specialty" asp-route-slug="@d.Specialty.Slug">
+            <strong>@d.User.FullName</strong>
+            <span>@d.Specialty.DisplayName(T.IsBangla) · @d.AvgRating.ToString("0.0", CultureInfo.InvariantCulture) ★</span>
+        </a>
+    }
+</div>
+
+<div class="guidance">
+    <strong>@T["TodayGuidance"]</strong>
+    <p>@Model.Guidance</p>
+</div>

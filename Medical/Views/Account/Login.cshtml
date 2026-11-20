@@ -1,0 +1,54 @@
+﻿@model LoginVm
+@{
+    ViewData["Title"] = T["Login"];
+}
+<div class="card narrow">
+    <h2>@T["Login"]</h2>
+    <div asp-validation-summary="All" class="error"></div>
+    <form method="post">
+        <label asp-for="Identifier">@T["PhoneOrEmail"]</label>
+        <input asp-for="Identifier" autocomplete="username" required />
+
+        <label asp-for="Password">@T["Password"]</label>
+        <input asp-for="Password" autocomplete="current-password" required />
+
+        <label class="check"><input asp-for="RememberMe" /> @T["RememberMe"]</label>
+
+        <button class="btn full" type="submit">@T["Login"]</button>
+    </form>
+    <p><a asp-action="Register">@T["NoAccount"]</a></p>
+</div>
+```
+
+**Views/Onboarding/Age.cshtml**
+
+```cshtml
+@{
+    ViewData["Title"] = T["AgeTitle"];
+}
+<div class="card narrow">
+    <h2>@T["AgeTitle"]</h2>
+    <p class="muted">@T["AgeSub"]</p>
+
+    <form method="post">
+        <div class="age-grid">
+            <label class="age-option">
+                <input type="radio" name="ageGroup" value="Under18" required />
+                <span>@T["Under18"]</span>
+            </label>
+            <label class="age-option">
+                <input type="radio" name="ageGroup" value="Age18To39" />
+                <span>@T["Age18To39"]</span>
+            </label>
+            <label class="age-option">
+                <input type="radio" name="ageGroup" value="Age40To49" />
+                <span>@T["Age40To49"]</span>
+            </label>
+            <label class="age-option highlight">
+                <input type="radio" name="ageGroup" value="Age50Plus" />
+                <span>@T["Age50Plus"]<small>@T["HomeNurseAvail"]</small></span>
+            </label>
+        </div>
+        <button class="btn full" type="submit">@T["Continue"]</button>
+    </form>
+</div>

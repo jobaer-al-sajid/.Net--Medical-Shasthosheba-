@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = T.IsBangla ? "আপনার বয়স" : "Your age group";
+}
+
+<div style="max-width:520px;margin:40px auto;padding:0 16px;">
+    <h2 style="margin-bottom:8px;">
+        @(T.IsBangla ? "আপনার বয়স কত?" : "What is your age group?")
+    </h2>
+    <p style="color:#666;margin-bottom:24px;">
+        @(T.IsBangla
+                ? "আপনার জন্য উপযুক্ত স্বাস্থ্য পরামর্শ ও রিমাইন্ডার সাজাতে আমরা এটা জানতে চাই।"
+                : "We ask this once to tailor your health guidance and reminders.")
+    </p>
+
+    <form asp-controller="Onboarding" asp-action="Age" method="post">
+        <div style="display:grid;gap:12px;">
+            <button type="submit" name="ageGroup" value="1" class="btn btn-success btn-lg">
+                @(T.IsBangla ? "১৮ বছরের কম" : "Under 18")
+            </button>
+            <button type="submit" name="ageGroup" value="2" class="btn btn-success btn-lg">
+                @(T.IsBangla ? "১৮ – ৩৯ বছর" : "18 – 39")
+            </button>
+            <button type="submit" name="ageGroup" value="3" class="btn btn-success btn-lg">
+                @(T.IsBangla ? "৪০ – ৪৯ বছর" : "40 – 49")
+            </button>
+            <button type="submit" name="ageGroup" value="4" class="btn btn-success btn-lg">
+                @(T.IsBangla ? "৫০+ বছর" : "50+")
+            </button>
+        </div>
+    </form>
+</div>

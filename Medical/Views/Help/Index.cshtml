@@ -1,0 +1,55 @@
+﻿@model List<Medical.Models.Help>
+@{
+    ViewData["Title"] = T.IsBangla ? "সাহায্য" : "Help";
+}
+
+<div style="max-width:640px;margin:32px auto;padding:0 16px;">
+    <h2>@(T.IsBangla ? "সাহায্য দরকার?" : "Need help?")</h2>
+    <p style="color:#666;">
+        @(T.IsBangla ? "আপনার সমস্যা লিখে পাঠান, আমরা দেখব।" : "Write your problem and we will look into it.")
+    </p>
+
+    @if (TempData["ok"] != null)
+    {
+        <div class="alert alert-success">
+            @(T.IsBangla ? "আপনার অনুরোধ পাঠানো হয়েছে।" : "Your request has been sent.")
+        </div>
+    }
+
+    <form asp-controller="Help" asp-action="Send" method="post">
+        <input name="title" class="form-control" maxlength="100" required
+               placeholder="@(T.IsBangla ? "বিষয়" : "Subject")" />
+        <textarea name="message" rows="4" maxlength="1000" class="form-control" required
+                  style="margin-top:12px;"
+                  placeholder="@(T.IsBangla ? "বিস্তারিত লিখুন" : "Describe your problem")"></textarea>
+        <button type="submit" class="btn btn-success" style="margin-top:12px;width:100%;">
+            @(T.IsBangla ? "পাঠান" : "Send")
+        </button>
+    </form>
+
+    <h4 style="margin-top:32px;">@(T.IsBangla ? "আপনার আগের অনুরোধ" : "Your previous requests")</h4>
+
+    @if (Model.Count == 0)
+    {
+        <p style="color:#888;">@(T.IsBangla ? "এখনো কিছু পাঠাননি।" : "Nothing sent yet.")</p>
+    }
+
+    @foreach (var h in Model)
+    {
+        <div style="border:1px solid #ddd;border-radius:12px;padding:12px;margin-top:10px;">
+            <strong>@h.Title</strong>
+            <span style="float:right;">
+                @if (h.IsResolved)
+                {
+                    <span style="color:green;">✔ @(T.IsBangla ? "সমাধান হয়েছে" : "Resolved")</span>
+                }
+                else
+                {
+                    <span style="color:#e67e00;">⏳ @(T.IsBangla ? "অপেক্ষমান" : "Pending")</span>
+                }
+            </span>
+            <div style="margin-top:6px;">@h.Message</div>
+            <small style="color:#888;">@h.CreatedAtUtc.AddHours(6).ToString("dd MMM yyyy, hh:mm tt")</small>
+        </div>
+    }
+</div>

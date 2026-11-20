@@ -1,0 +1,191 @@
+﻿@{
+    ViewData["Title"] = T.IsBangla ? "হোম" : "Home";
+}
+
+<!-- ===== HERO ===== -->
+<section class="hp-hero">
+    <div class="hp-hero-text">
+        <span class="hp-badge">@(T.IsBangla ? "BMDC-যাচাইকৃত ডাক্তার" : "BMDC-verified doctors")</span>
+        <h1>
+            @(T.IsBangla ? "সঠিক ডাক্তার, " : "The right doctor, ")
+            <span class="hp-hl">@(T.IsBangla ? "এক ট্যাপেই" : "in one tap")</span>
+        </h1>
+        <p class="hp-lead">
+            @(T.IsBangla
+                        ? "বাংলায় সহজ ব্যবহার, কম ডাটায় দ্রুত লোড। বিশেষজ্ঞ ডাক্তার খুঁজুন, অ্যাপয়েন্টমেন্ট নিন, আর আপনার বয়স অনুযায়ী স্বাস্থ্য পরামর্শ পান।"
+                        : "Easy in Bangla, fast on low data. Find specialist doctors, book appointments, and get health guidance made for your age.")
+        </p>
+        <div class="hp-cta-row">
+            <a class="hp-btn hp-btn-primary" asp-controller="Account" asp-action="Register">
+                @(T.IsBangla ? "শুরু করুন" : "Get started")
+            </a>
+            <a class="hp-btn hp-btn-ghost" href="/doctors">
+                @(T.IsBangla ? "ডাক্তার খুঁজুন" : "Find a doctor")
+            </a>
+        </div>
+        <div class="hp-note">
+            ✔ @(T.IsBangla ? "বিনামূল্যে রেজিস্ট্রেশন" : "Free sign-up")
+            &nbsp;&nbsp; ✔ @(T.IsBangla ? "bKash / Nagad সাপোর্ট" : "bKash / Nagad supported")
+        </div>
+    </div>
+
+    <div class="hp-art">
+        <svg viewBox="0 0 480 400" class="hp-svg" role="img"
+             aria-label="@(T.IsBangla ? "ডাক্তার অ্যাপ" : "Doctor app")">
+            <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#0f8a5f" />
+                    <stop offset="1" stop-color="#34c28b" />
+                </linearGradient>
+                <filter id="sh" x="-20%" y="-20%" width="140%" height="150%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#101828" flood-opacity=".15" />
+                </filter>
+            </defs>
+
+            <circle cx="240" cy="205" r="175" fill="#e8f6f0" />
+            <circle cx="410" cy="62" r="34" fill="#fff1d6" />
+            <circle cx="62" cy="330" r="24" fill="#fff1d6" />
+            <circle cx="430" cy="340" r="12" fill="#cdeee0" />
+
+            <rect x="150" y="38" width="180" height="326" rx="30" fill="#fff" stroke="#d7e6e0" stroke-width="4" filter="url(#sh)" />
+            <rect x="214" y="48" width="52" height="8" rx="4" fill="#e5e7eb" />
+
+            <rect x="166" y="68" width="148" height="72" rx="16" fill="url(#g1)" />
+            <rect x="182" y="88" width="30" height="30" rx="9" fill="#fff" fill-opacity=".25" />
+            <rect x="193" y="94" width="8" height="18" rx="2" fill="#fff" />
+            <rect x="188" y="99" width="18" height="8" rx="2" fill="#fff" />
+            <rect x="222" y="92" width="76" height="9" rx="4" fill="#fff" />
+            <rect x="222" y="108" width="52" height="7" rx="3" fill="#fff" fill-opacity=".7" />
+
+            <rect x="166" y="154" width="148" height="62" rx="12" fill="#f5f8f7" />
+            <circle cx="194" cy="185" r="16" fill="#0f8a5f" />
+            <circle cx="194" cy="180" r="5" fill="#fff" />
+            <path d="M184 194 q10 -9 20 0" fill="#fff" />
+            <rect x="218" y="170" width="70" height="8" rx="4" fill="#1f2937" />
+            <rect x="218" y="185" width="48" height="6" rx="3" fill="#9ca3af" />
+            <rect x="218" y="198" width="44" height="12" rx="6" fill="#f59e0b" />
+            <text x="240" y="207.5" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">TOP PICK</text>
+
+            <rect x="166" y="226" width="148" height="58" rx="12" fill="#f5f8f7" />
+            <circle cx="194" cy="255" r="16" fill="#6b9fe0" />
+            <circle cx="194" cy="250" r="5" fill="#fff" />
+            <path d="M184 264 q10 -9 20 0" fill="#fff" />
+            <rect x="218" y="242" width="62" height="8" rx="4" fill="#1f2937" />
+            <rect x="218" y="257" width="44" height="6" rx="3" fill="#9ca3af" />
+            <rect x="218" y="269" width="36" height="8" rx="4" fill="#cdeee0" />
+
+            <rect x="166" y="298" width="148" height="44" rx="13" fill="#0f8a5f" />
+            <text x="240" y="326" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">@(T.IsBangla ? "বুক করুন" : "Book now")</text>
+
+            <g filter="url(#sh)">
+                <rect x="28" y="112" width="132" height="62" rx="16" fill="#fff" />
+            </g>
+            <text x="44" y="136" font-size="12" font-weight="700" fill="#1f2937">@(T.IsBangla ? "হার্ট রেট" : "Heart rate")</text>
+            <polyline points="44,156 68,156 76,144 86,168 96,150 104,156 146,156"
+                      fill="none" stroke="#e11d48" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+            <g filter="url(#sh)">
+                <rect x="322" y="222" width="134" height="58" rx="16" fill="#fff" />
+            </g>
+            <circle cx="348" cy="251" r="14" fill="#0f8a5f" />
+            <path d="M341 251 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <text x="370" y="249" font-size="12" font-weight="700" fill="#1f2937">BMDC</text>
+            <text x="370" y="265" font-size="11" fill="#6b7280">@(T.IsBangla ? "যাচাইকৃত" : "Verified")</text>
+
+            <g filter="url(#sh)">
+                <rect x="332" y="96" width="120" height="48" rx="14" fill="#fff" />
+            </g>
+            <text x="348" y="116" font-size="16">⏰</text>
+            <text x="372" y="116" font-size="12" font-weight="700" fill="#1f2937">8:00 AM</text>
+            <text x="348" y="133" font-size="10.5" fill="#6b7280">@(T.IsBangla ? "ওষুধের রিমাইন্ডার" : "Medicine reminder")</text>
+        </svg>
+    </div>
+</section>
+
+<!-- ===== FEATURE STRIP ===== -->
+<section class="hp-strip">
+    <div class="hp-strip-item">
+        <span class="hp-strip-ico">🩺</span>
+        <strong>@(T.IsBangla ? "১২টি বিশেষত্ব" : "12 specialties")</strong>
+        <small>@(T.IsBangla ? "মেডিসিন থেকে ডেন্টাল পর্যন্ত" : "From medicine to dentistry")</small>
+    </div>
+    <div class="hp-strip-item">
+        <span class="hp-strip-ico">✅</span>
+        <strong>@(T.IsBangla ? "BMDC যাচাইকৃত" : "BMDC verified")</strong>
+        <small>@(T.IsBangla ? "বিশ্বস্ত ডাক্তার" : "Trusted doctors")</small>
+    </div>
+    <div class="hp-strip-item">
+        <span class="hp-strip-ico">💳</span>
+        <strong>bKash • Nagad</strong>
+        <small>@(T.IsBangla ? "টাকায় পেমেন্ট" : "Pay in BDT")</small>
+    </div>
+    <div class="hp-strip-item">
+        <span class="hp-strip-ico">🌐</span>
+        <strong>@(T.IsBangla ? "বাংলা / English" : "Bangla / English")</strong>
+        <small>@(T.IsBangla ? "এক ট্যাপে ভাষা বদল" : "Switch in one tap")</small>
+    </div>
+</section>
+
+<!-- ===== SPECIALTIES ===== -->
+<section class="hp-block">
+    <div class="hp-block-head">
+        <h2>@(T.IsBangla ? "বিশেষজ্ঞ বেছে নিন" : "Choose a specialty")</h2>
+        <a href="/doctors">@(T.IsBangla ? "সব দেখুন →" : "See all →")</a>
+    </div>
+    <div class="hp-spec-grid">
+        <a class="hp-spec" href="/doctors"><span>🩺</span>@(T.IsBangla ? "জেনারেল মেডিসিন" : "General Medicine")</a>
+        <a class="hp-spec" href="/doctors"><span>🦴</span>@(T.IsBangla ? "অর্থোপেডিক্স" : "Orthopedics")</a>
+        <a class="hp-spec" href="/doctors"><span>🧠</span>@(T.IsBangla ? "নিউরোলজি" : "Neurology")</a>
+        <a class="hp-spec" href="/doctors"><span>🤰</span>@(T.IsBangla ? "গাইনি" : "Gynecology")</a>
+        <a class="hp-spec" href="/doctors"><span>👁️</span>@(T.IsBangla ? "চক্ষু" : "Ophthalmology")</a>
+        <a class="hp-spec" href="/doctors"><span>❤️</span>@(T.IsBangla ? "হৃদরোগ" : "Cardiology")</a>
+        <a class="hp-spec" href="/doctors"><span>👶</span>@(T.IsBangla ? "শিশুরোগ" : "Pediatrics")</a>
+        <a class="hp-spec" href="/doctors"><span>👂</span>@(T.IsBangla ? "নাক-কান-গলা" : "ENT")</a>
+        <a class="hp-spec" href="/doctors"><span>🧴</span>@(T.IsBangla ? "চর্মরোগ" : "Dermatology")</a>
+        <a class="hp-spec" href="/doctors"><span>💭</span>@(T.IsBangla ? "মনোরোগ" : "Psychiatry")</a>
+        <a class="hp-spec" href="/doctors"><span>🦷</span>@(T.IsBangla ? "দন্ত" : "Dentistry")</a>
+        <a class="hp-spec" href="/doctors"><span>💧</span>@(T.IsBangla ? "ইউরোলজি" : "Urology")</a>
+    </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="hp-block">
+    <h2>@(T.IsBangla ? "কীভাবে কাজ করে" : "How it works")</h2>
+    <div class="hp-steps">
+        <div class="hp-step">
+            <div class="hp-step-no">1</div>
+            <h4>@(T.IsBangla ? "রেজিস্টার করুন" : "Sign up")</h4>
+            <p>@(T.IsBangla ? "ফোন নম্বর দিয়ে এক মিনিটে অ্যাকাউন্ট খুলুন।" : "Create an account with your phone number in a minute.")</p>
+        </div>
+        <div class="hp-step">
+            <div class="hp-step-no">2</div>
+            <h4>@(T.IsBangla ? "ডাক্তার বেছে নিন" : "Pick a doctor")</h4>
+            <p>@(T.IsBangla ? "রেটিং, রিপ্লাই টাইম আর অভিজ্ঞতা দেখে সেরা ডাক্তার বাছুন।" : "Compare rating, reply time and experience to choose the best.")</p>
+        </div>
+        <div class="hp-step">
+            <div class="hp-step-no">3</div>
+            <h4>@(T.IsBangla ? "অ্যাপয়েন্টমেন্ট নিন" : "Book")</h4>
+            <p>@(T.IsBangla ? "এক ট্যাপে বুক করুন, ডাক্তার আপনার অনুরোধ দেখবেন।" : "Book in one tap and the doctor sees your request.")</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== AGE PLANS ===== -->
+<section class="hp-block">
+    <h2>@(T.IsBangla ? "আপনার বয়স অনুযায়ী পরামর্শ" : "Guidance made for your age")</h2>
+    <div class="hp-age-grid">
+        <div class="hp-age"><div class="hp-age-ico">🧒</div><h4>@(T.IsBangla ? "১৮-র নিচে" : "Under 18")</h4><p>@(T.IsBangla ? "বেড়ে ওঠা, টিকা ও পুষ্টি" : "Growth, vaccines and nutrition")</p></div>
+        <div class="hp-age"><div class="hp-age-ico">🧑</div><h4>18 – 39</h4><p>@(T.IsBangla ? "ফিটনেস, ঘুম ও মানসিক স্বাস্থ্য" : "Fitness, sleep and mental health")</p></div>
+        <div class="hp-age"><div class="hp-age-ico">🧔</div><h4>40 – 49</h4><p>@(T.IsBangla ? "প্রেসার, সুগার ও হার্টের চেকআপ" : "BP, sugar and heart check-ups")</p></div>
+        <div class="hp-age"><div class="hp-age-ico">👵</div><h4>50+</h4><p>@(T.IsBangla ? "হোম নার্স সুবিধা সহ নিয়মিত যত্ন" : "Regular care with Home Nurse visits")</p></div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="hp-cta">
+    <h2>@(T.IsBangla ? "আজই শুরু করুন" : "Start today")</h2>
+    <p>@(T.IsBangla ? "আপনার স্বাস্থ্য, আপনার ভাষায়।" : "Your health, in your language.")</p>
+    <a class="hp-btn hp-btn-white" asp-controller="Account" asp-action="Register">
+        @(T.IsBangla ? "বিনামূল্যে রেজিস্টার করুন" : "Register for free")
+    </a>
+</section>

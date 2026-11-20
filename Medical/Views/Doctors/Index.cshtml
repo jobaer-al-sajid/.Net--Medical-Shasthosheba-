@@ -1,0 +1,15 @@
+﻿@model List<Specialty>
+@{
+    ViewData["Title"] = T["FindDoctor"];
+}
+
+<h1>@T["Specialties"]</h1>
+<div class="grid grid-4">
+    @foreach (var s in Model)
+    {
+        <a class="spec" asp-controller="Doctors" asp-action="Specialty" asp-route-slug="@s.Slug">
+            <span class="icon">@s.Icon</span>
+            <strong>@s.DisplayName(T.IsBangla)</strong>
+        </a>
+    }
+</div>

@@ -1,0 +1,28 @@
+﻿@model RegisterVm
+@{
+    ViewData["Title"] = T["Register"];
+}
+<div class="card narrow">
+    <h2>@T["Register"]</h2>
+    <div asp-validation-summary="ModelOnly" class="error"></div>
+    <form method="post">
+        <label asp-for="FullName">@T["FullName"]</label>
+        <input asp-for="FullName" autocomplete="name" required />
+        <span asp-validation-for="FullName" class="error"></span>
+
+        <label asp-for="Phone">@T["Phone"]</label>
+        <input asp-for="Phone" inputmode="tel" placeholder="01XXXXXXXXX" autocomplete="tel" required />
+        <span asp-validation-for="Phone" class="error"></span>
+
+        <label asp-for="Email">@T["EmailOptional"]</label>
+        <input asp-for="Email" autocomplete="email" />
+        <span asp-validation-for="Email" class="error"></span>
+
+        <label asp-for="Password">@T["Password"]</label>
+        <input asp-for="Password" autocomplete="new-password" required />
+        <span asp-validation-for="Password" class="error"></span>
+
+        <button class="btn full" type="submit">@T["Register"]</button>
+    </form>
+    <p><a asp-action="Login">@T["HaveAccount"]</a></p>
+</div>

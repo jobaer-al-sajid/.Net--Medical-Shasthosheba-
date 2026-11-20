@@ -1,0 +1,36 @@
+﻿@model DoctorDashboardVm
+@{
+    ViewData["Title"] = T["Home"];
+}
+
+<h1>@T["GoodDay"], @Model.DoctorName</h1>
+
+<div class="grid grid-4">
+    <div class="stat"><small>@T["Today"]</small><strong>@Model.VisitsToday @T["Visits"]</strong></div>
+    <div class="stat"><small>@T["AvgReply"]</small><strong>@Model.AvgReplyMinutes @T["MinShort"]</strong></div>
+    <div class="stat"><small>@T["Rating"]</small><strong>@Model.Rating.ToString("0.0", CultureInfo.InvariantCulture) ★</strong></div>
+    <div class="stat warn"><small>@T["Waiting"]</small><strong>@Model.Queue.Count</strong></div>
+</div>
+
+<h3>@T["PatientQueue"]</h3>
+
+@if (!Model.Queue.Any())
+{
+    <p class="muted">@T["NoWaiting"]</p>
+}
+
+@foreach (var q in Model.Queue)
+{
+    var cls = q.WaitingMinutes >= 20 ? "red" : q.WaitingMinutes >= 10 ? "blue" : "green";
+    <div class="queue-row">
+        <strong>@q.PatientName <span class="muted">(@q.AgeLabel)</span></strong>
+        <span class="muted">@q.Reason</span>
+        <span class="badge @cls">@T["Waiting"] @q.WaitingMinutes @T["MinShort"]</span>
+        <a class="btn btn-dark" href="#">@T["History"]</a>
+    </div>
+}
+
+@if (Model.Queue.Any())
+{
+    <div class="tip">@Model.Queue.Count @T["Waiting"]. @T["QuickReplyTip"]</div>
+}
